@@ -1,0 +1,12 @@
+{{#if quote }}
+    <q>{{ quote.text }}</q>
+    {{#if author }}
+        --  {{ author.first_name }}
+        {{ author.last_name }}
+        {{ author.year_of_birth }} - {{ author.year_of_death }}
+    {{else}}
+        <p>No author found.</p>
+    {{/if}}
+{{else}}
+    <p>No quote found.</p>
+{{/if}}

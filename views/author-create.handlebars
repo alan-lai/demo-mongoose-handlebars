@@ -1,0 +1,29 @@
+{{#if this.success }}
+    <div class="alert alert-success" role="alert">{{ this.success }}</div>
+{{/if}}
+{{#if this.warning }}
+    <div class="alert alert-warning" role="alert">{{ this.warning }}</div>
+{{/if}}
+{{#if this.error }}
+    <div class="alert alert-error" role="alert">{{ this.error }}</div>
+{{/if}}
+
+<form id="create-author-form" method="post" action="/author/new">
+    <div class="form-group">
+        <label for="author-first-name">First Name</label>
+        <input id="author-first-name" type="text" name="first_name"{{#if first_name }} value="{{ first_name }}"{{/if}} required>
+    </div>
+    <div class="form-group">
+        <label for="author-last-name">Last Name</label>
+        <input id="author-last-name" type="text" name="last_name"{{#if last_name }} value="{{ last_name }}"{{/if}}>
+    </div>
+    <div class="form-group">
+        <label for="author-year-of-birth">Year of Birth</label>
+        <input id="author-year-of-birth" type="text" name="year_of_birth"{{#if year_of_birth }} value="{{ year_of_birth }}"{{/if}}>
+    </div>
+    <div class="form-group">
+        <label for="author-year-of-death">Year of Death</label>
+        <input id="author-year-of-death" type="text" name="year_of_death"{{#if year_of_death }} value="{{ year_of_death }}"{{/if}}>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form>
