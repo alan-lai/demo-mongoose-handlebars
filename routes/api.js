@@ -99,4 +99,53 @@ router.get('/quote/:id', (req, res) => {
     });
 });
 
+router.post('/author/new', (req, res) => {
+    let firstName = req.body.first_name.trim();
+    let lastName = req.body.last_name.trim();
+    let yearOfBirth = req.body.year_of_birth.trim();
+    let yearOfDeath = req.body.year_of_death.trim();
+
+    //check if exists
+    let firstNamePattern = new RegExp(firstName, 'i');
+    let lastNamePattern = new RegExp(lastName, 'i');
+    let yearOfBirthPattern = new RegExp(yearOfBirth, 'i');
+    let yearOfBirthDeathPattern = new RegExp(yearOfDeath, 'i');
+    Author.findOne({
+        first_name: firstNamePattern,
+        last_name: lastNamePattern,
+        year_of_birth: yearOfBirthPattern,
+    },
+    {
+        first_name: firstNamePattern,
+        last_name: lastNamePattern,
+        year_of_death: yearOfBirthDeathPattern
+    }, (err, author) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+        } else {
+            if (author) {
+                res.json({ success: 0 })
+            } else {
+                console.log('creating user');
+                //create new author
+                let newAuthor = new Author({
+                    first_name: firstName,
+                    last_name: lastName,
+                    year_of_birth: yearOfBirth,
+                    year_of_death: yearOfDeath
+                });
+                newAuthor.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.send({ success: 1 });
+                    }
+                });
+            }
+        }
+    });
+});
+
 module.exports = router;

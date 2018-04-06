@@ -8,7 +8,7 @@
     <div class="alert alert-error" role="alert">{{ this.error }}</div>
 {{/if}}
 
-<form id="create-author-form" method="post" action="/author/new">
+<form id="create-author-form" method="post" action="/api/author/new">
     <div class="form-group">
         <label for="author-first-name">First Name</label>
         <input id="author-first-name" type="text" name="first_name"{{#if first_name }} value="{{ first_name }}"{{/if}} required>
